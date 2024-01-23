@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.c                                         :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ottouti <ottouti@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 16:27:39 by ottouti           #+#    #+#             */
-/*   Updated: 2024/01/19 16:28:56 by ottouti          ###   ########.fr       */
+/*   Created: 2023/10/24 15:01:52 by ottouti           #+#    #+#             */
+/*   Updated: 2024/01/23 13:13:02 by ottouti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include <stdlib.h>
+#include "../../include/libft.h"
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	return (0);
+	t_list	*current;
+	t_list	*next_node;
+
+	if (!lst || !*lst || !del)
+		return ;
+	current = *lst;
+	while (current != NULL)
+	{
+		next_node = current -> next;
+		del(current -> content);
+		free(current);
+		current = next_node;
+	}
+	*lst = NULL;
 }
