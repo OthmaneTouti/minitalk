@@ -6,7 +6,7 @@
 /*   By: ottouti <ottouti@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:57:23 by ottouti           #+#    #+#             */
-/*   Updated: 2024/01/23 16:31:36 by ottouti          ###   ########.fr       */
+/*   Updated: 2024/01/23 17:10:15 by ottouti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(void)
         exit(1);
     }
 
-    printf("Server PID: %d\n", getpid());
+    ft_printf("Server PID: %d\n", getpid());
 
     while (1)
         pause();
