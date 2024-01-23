@@ -6,28 +6,30 @@
 /*   By: ottouti <ottouti@student.42quebec.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:57:23 by ottouti           #+#    #+#             */
-/*   Updated: 2024/01/23 17:10:15 by ottouti          ###   ########.fr       */
+/*   Updated: 2024/01/23 17:28:07 by ottouti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-t_signal_data signal_data = {0, 0, 0};
+t_signal_data g_signal_data = {0, 0, 0};
 
 void handle_signal(int sig)
 {
+	char temp;
+	
     if (sig == SIGUSR1)
-        signal_data.bit = 0;
+        g_signal_data.bit = 0;
     else if (sig == SIGUSR2)
-		signal_data.bit = 1;
-	signal_data.character |= (signal_data.bit << signal_data.bits_received);
-    signal_data.bits_received++;
-    if (signal_data.bits_received == 8)
+		g_signal_data.bit = 1;
+	g_signal_data.character |= (g_signal_data.bit << g_signal_data.bits_received);
+    g_signal_data.bits_received++;
+    if (g_signal_data.bits_received == 8)
     {
-        char temp = signal_data.character;
+        temp = g_signal_data.character;
         write(1, &temp, 1);
-        signal_data.character = 0;
-        signal_data.bits_received = 0;
+        g_signal_data.character = 0;
+        g_signal_data.bits_received = 0;
     }
 }
 
